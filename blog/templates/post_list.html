@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post_list</title>
+</head>
+<body>
+    <div class="post">
+        
+        {% for contact in posts %}
+    {# Each "contact" is a Contact model object. #}
+    <h2>{{ contact.name }}</h2><br>
+     <p>{{ contact.name }}</p>
+    <br>
+     <h6>{{contact.phone}}</h6>
+    ...
+{% endfor %}
+    </div>
+    <div class="paginator">
+        {% if posts.has_previous %}
+            
+            <a href="?page={{ posts.previous_page_number }}">previous</a>
+        {% endif %}
+       Page {{ posts.number }} of {{posts.paginator.num_pages }}
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">next</a>
+           
+        {% endif %}
+        
+
+    </div>
+</html>

@@ -1,7 +1,14 @@
-from blog.models import Post
+
 from django.urls import path
 from .import views
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("blog/",views.post,name="Post"),
+    path('',views.index,name="index"),
+    path('home/',views.home,name="home"),
+    path('services/',views.services,name="servies"),
+    path('contact/',views.Contact,name="contact"),
+    path('contact/contactsubmit/',views.Contact,name="contactsubmit"),
+    path('add/',views.adds,name="addhtmlfile"),
+    path('add/addResult/',views.add,name='addResult'),
+    path("post_list/",views.post_list, name="post_list"),
+   
 ]
