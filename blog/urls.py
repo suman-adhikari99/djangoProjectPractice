@@ -10,5 +10,7 @@ urlpatterns = [
     path('add/',views.adds,name="addhtmlfile"),
     path('add/addResult/',views.add,name='addResult'),
     path("post_list/",views.post_list, name="post_list"),
+    path('registration/',views.showformdata,name='showformdata'),
+    path('modelform/',views.Contactform, name='Contactform'),
    
 ]
