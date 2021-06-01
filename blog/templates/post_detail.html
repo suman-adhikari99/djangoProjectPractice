@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="GET">
+        {%csrf_token%}
+        <article>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.text }}</p>
+            <time>Published date: {{post.published_date}}</time>
+        </article>
+        
+    </form>
+        
+    
+    <h2>Comments</h2>
+    {% for comment in comments %}
+        {{comment.name}}
+        {{comment.body}}
+      
+    {% endfor %}
+    <h1>comment2</h1>
+
+    {%for comments in blogcommen%}
+    <p>{{comments.user}}:{{comments.comment}}</p> 
+        
+
+
+    {% endfor%}
+
+
+    <form action="{% url 'postComment' %}" method="POST">
+        {%csrf_token%}
+        <input type="text"name="comment" placeholder="enter comment here">
+        <input type="hidden" name="postsno" value="{{post.id}}">
+        <button type="submit">submit</button>
+    
+    </form>
+    {{blogcomment.comment}}
+ 
+    
+  
+</body>
+</html>
+ 
+        
+   
