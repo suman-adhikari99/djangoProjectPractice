@@ -92,9 +92,10 @@
     {{blogcomment.comment}}
     {{replycomment.comment}}
 
-    <div class="replies bg-danger my-2 ">
+    <div class="replies bg-danger my-2 ml-10 ">
     {% for reply in replies %}
-        {{reply.comment}}
+    <p class="container">replied-message: {{reply.comment}}</p>
+       
         <br> 
     {% endfor %}
         

@@ -45,7 +45,7 @@ class Comment(models.Model):
         return 'comment {} by {}'.format(self.body,self.name)
 
 
-class blogcomment(models.Model):
+class BlogComment(models.Model):
     sno= models.AutoField(primary_key=True)
     comment=models.TextField(max_length=100)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
@@ -53,3 +53,5 @@ class blogcomment(models.Model):
     parent= models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
     timestamp= models.DateTimeField(auto_now_add=True)
     active=models.BooleanField(default=True)
+
+   

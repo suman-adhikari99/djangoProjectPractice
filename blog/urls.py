@@ -13,7 +13,9 @@ urlpatterns = [
     path('email/' , views.subscribe, name="subscribe"),
     path('mailmass/' , views.mailmass, name="mailmass"),
     path('attach/' , views.attach, name="attach"),
-    path('postComment/<int:id>',views.postComment,name='postComment'),
+ 
+   
+
 
 
 

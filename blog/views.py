@@ -3,7 +3,7 @@ from os import name
 from django.utils import regex_helper, timezone
 
 from django.http import HttpResponse
-from .models import Post,form,Comment, blogcomment
+from .models import Post,form,Comment, BlogComment
 from django import forms
 from .forms import PostForm, DocumentForm,Subscribe,CommentForm
 from django.shortcuts import redirect, render, get_list_or_404,get_object_or_404
@@ -159,8 +159,8 @@ def post_detail(request, pk=0):
                                            
 
       
-    
-def postComment(request,id):
+    '''
+def postcomment(request,id):
     post=Post.objects.get(pk=id)
     comments= blogcomment.objects.filter(post=post, parent=None)
     if request.method=="POST":
@@ -173,7 +173,7 @@ def postComment(request,id):
             comment=blogcomment(comment= comments, user=user, post=post)
             comment.post= post
             comment.save()
-            return render(request,'post_detail.html', {'blogcomment':comment,"post":posts,'blogcommen':comments})
+            return render(request,'postcomment.html', {'blogcomment':comment,"post":posts,'blogcommen':comments})
         else:
             parent= blogcomment.objects.get(sno=parentSno)
             comment=blogcomment(comment= comments, user=user, post=post , parent=parent)
@@ -184,9 +184,14 @@ def postComment(request,id):
         
     if request.method=='GET':
        
-        return render(request,'post_detail.html',{'blogcommen':comments,'pos':post})
+        return render(request,'postcomment.html',{'blogcommen':comments,'pos':post})
 
 
    
 
-        
+
+
+'''
+
+
+       
