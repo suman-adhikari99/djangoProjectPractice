@@ -160,6 +160,8 @@ def post_detail(request, pk=0):
 
       
     '''
+    # i have made this postComment function for comment on post. and i also want to implement 
+    # commment reply functionality.
 def postcomment(request,id):
     post=Post.objects.get(pk=id)
     comments= blogcomment.objects.filter(post=post, parent=None)
@@ -169,7 +171,9 @@ def postcomment(request,id):
         parentSno= request.POST.get('parentSno')
 
         posts=Post.objects.get(pk=id)
-        if parentSno=="":
+        if parentSno=="": #checking if parentSno is an empty string or not. If parentSno 
+                            #is a blank string, it means that the user is trying to post a 
+                            # new comment
             comment=blogcomment(comment= comments, user=user, post=post)
             comment.post= post
             comment.save()
