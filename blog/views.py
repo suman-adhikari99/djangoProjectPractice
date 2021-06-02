@@ -160,18 +160,31 @@ def post_detail(request, pk=0):
 
       
     
-def postComment(request):
-    blogcomments=blogcomment.objects.all()
+def postComment(request,id):
+    post=Post.objects.get(pk=id)
+    comments= blogcomment.objects.filter(post=post, parent=None)
     if request.method=="POST":
         comments= request.POST.get("comment")
-        user=request.user
-        pk=request.POST.get('postsno')
-        posts=Post.objects.get(pk=1)
-        comment=blogcomment(comment=comments,user=user,post=posts)
-        comment.save()
-        return render(request,'post_detail.html', {'blogcomment':comment,"post":posts,'blogcommen':blogcomments})
+        user=request.user  
+        parentSno= request.POST.get('parentSno')
+
+        posts=Post.objects.get(pk=id)
+        if parentSno=="":
+            comment=blogcomment(comment= comments, user=user, post=post)
+            comment.post= post
+            comment.save()
+            return render(request,'post_detail.html', {'blogcomment':comment,"post":posts,'blogcommen':comments})
+        else:
+            parent= blogcomment.objects.get(sno=parentSno)
+            comment=blogcomment(comment= comments, user=user, post=post , parent=parent)
+            comment.save()
+            replies= blogcomment.objects.filter(post=post).exclude(parent=None)
+            return render(request,'post_detail.html', {'replycomment':comment,"post":posts,'replie':replies})
+           
+        
     if request.method=='GET':
-        return render(request,'post_detail.html',{'blogcommen':blogcomments})
+       
+        return render(request,'post_detail.html',{'blogcommen':comments,'pos':post})
 
 
    
